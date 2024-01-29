@@ -7,7 +7,15 @@ constructor (text, choices, answer, difficulty){
  this.answer = answer
  this.difficulty = difficulty
 }
-shuffleChoices(){
-    this.choices = choices
-}
+shuffleChoices() {
+    //let randomShuffle = this.choices.length, randomChoices;  
+    //let randomChoices = Math.floor(Math.random() * randomShuffle)
+
+        for (let i = this.choices.length - 1; i > 0; i--) {
+            let j = Math.floor(Math.random() * (i + 1));
+            let temp = this.choices[i];
+            this.choices[i] = this.choices[j];
+            this.choices[j] = temp;
+        }
+    }
 }
