@@ -27,7 +27,7 @@ class Quiz {
     }
 
      checkAnswer(answer) {
-        this.correctAnswers ++
+        this.correctAnswers ++ //Darle una vuelta y checkear
      }
 
      hasEnded() {
