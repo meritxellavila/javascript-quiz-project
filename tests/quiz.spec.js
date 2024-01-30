@@ -263,9 +263,9 @@ describe("Quiz", () => {
   // Once you start working on the tests, change the 'xdescribe' to 'describe' to enable the tests.
   // ****************************************************************************************************
 
-  xdescribe("filterQuestionsByDifficulty() method", () => {   
+  describe("filterQuestionsByDifficulty() method", () => {   
     it("should use the 'filter()' array method on the 'questions' array", () => {
-      // Instantiate a new Quiz object
+    // Instantiate a new Quiz object
       const quiz = new Quiz([], "test", 60);
       // Set up a spy on the 'filter()' array method to track calls to it
       const filterSpy = spyOn(quiz.questions, "filter");
@@ -293,26 +293,29 @@ describe("Quiz", () => {
       // YOUR CODE HERE:
       //
       // 1. Instantiate a new Quiz object
+      const quiz = new Quiz([], "test", 60);
+      
 
       // 2. Check if the filterQuestionsByDifficulty() method is defined
-
+      expect(filterQuestionsByDifficulty).ToBeDefined();
     });
 
     it("should be a function", () => {
       // YOUR CODE HERE:
       //
       // 1. Instantiate a new Quiz object
-
+      const quiz = new Quiz([], "test", 60);
       // 2. Check if the .filterQuestionsByDifficulty is a function
-    });
+      expect(typeof quiz.filterQuestionsByDifficulty).toBe("function");
+    })
 
     it("should receive 1 argument (difficulty)", () => {
       // YOUR CODE HERE:
       //
       // 1. Instantiate a new Quiz object
-
+      const quiz = new Quiz([], "test", 60);
       // 2. Check if the filterQuestionsByDifficulty() method takes 1 argument
-
+      expect(quiz.filterQuestionsByDifficulty.length).toEqual(1);
     });
 
     it("should update the 'questions' array with the questions filtered by difficulty", () => {
@@ -349,10 +352,13 @@ describe("Quiz", () => {
       // YOUR CODE HERE:
       //
       // 2. Instantiate a new Quiz object with the test questions
-
+      const quiz = new Quiz([], "questions", 60);
       // 3. Call the `filterQuestionsByDifficulty()` method with a number between 1 and 3 as a 1st argument.
-
+      quiz.filterQuestionsByDifficulty(2);
       // 4. Check if the questions array has been filtered correctly
+      expect(filterQuestionsByDifficulty).ToBe(1)
+      expect(filterQuestionsByDifficulty).ToBe(2)
+      expect(filterQuestionsByDifficulty).ToBe(3)
     });
 
     it("should not change the 'questions' array if the 1st argument is not a number between 1 and 3", () => {

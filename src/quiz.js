@@ -18,8 +18,13 @@ class Quiz {
      }
 
      shuffleQuestions() {
-        [this.questions]
+        for (let i = this.questions.length - 1; i > 0; i--) {
+            let j = Math.floor(Math.random() * (i + 1));
+            let temp = this.questions[i];
+            this.questions[i] = this.questions[j];
+            this.questions[j] = temp;
      }
+    }
 
      checkAnswer(answer) {
         this.correctAnswers ++
@@ -31,5 +36,9 @@ class Quiz {
         } else if (this.currentQuestionIndex === this.questions.length) {
             return true;
         }
+     }
+
+     filterQuestionsByDifficulty(easy){
+
      }
 }
