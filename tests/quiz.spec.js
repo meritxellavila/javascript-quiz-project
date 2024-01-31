@@ -390,11 +390,12 @@ describe("Quiz", () => {
       // YOUR CODE HERE:
       //
       // 2. Instantiate a new Quiz object with the test questions
+      const quiz = new Quiz([], "questions", 60);
 
       // 3. Call the `filterQuestionsByDifficulty()` method with a string as a 1st argument (wrong data type).
-
+      quiz.filterQuestionsByDifficulty(`string`);
       // 4. Check if the questions array is still the same as the original (it hasn't been filtered)
-
+      expect(quiz.filterQuestionsByDifficulty).toEqual(questions);
     });
   });
 
@@ -499,9 +500,11 @@ describe("Quiz", () => {
       // YOUR CODE HERE:
       //
       // 1. Instantiate a new Quiz object with the test questions
-
+      const quiz = new Quiz([], "questions", 60);
       // 2. Check that the averageDifficulty() method returns the correct average when called
-
+      expect(quiz.averageDifficulty(3,3,3,3,3)).toEqual("3");
+      expect(quiz.averageDifficulty(2,2,1,2,3)).toEqual("2");
+      expect(quiz.averageDifficulty(1,1,2,1,3)).toEqual("1,6");
     });
   });
 });
