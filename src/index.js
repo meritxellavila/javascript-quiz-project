@@ -53,7 +53,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const quiz = new Quiz(questions, quizDuration, quizDuration);
   // Shuffle the quiz questions
   quiz.shuffleQuestions();
-
+  console.log(quiz)
   /************  SHOW INITIAL CONTENT  ************/
 
   // Convert the time remaining in seconds to minutes and seconds, and pad the numbers with zeros if needed
@@ -106,7 +106,7 @@ document.addEventListener("DOMContentLoaded", () => {
     let questionElem = document.querySelector("#question");
     const newQuestion = document.createElement(`h3`);
     newQuestion.innerHTML = `
-    <h3>What is 2 + 2?</h3>`;
+    <h3>${questions["new Question"]}</h3>`;
     questionElem.append(newQuestion);
 
     // 2. Update the green progress bar
@@ -125,7 +125,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Each choice should be displayed as a radio input element with a label:
 
     let choicesElem = document.querySelector("#choices");
-    const secondQuestion = document.createElement(`label`);
+    const secondQuestion = document.createElement(`div`);
     secondQuestion.innerHTML = `
           <input type="radio" name="choice" value="4">
           <label>4</label>
@@ -150,16 +150,15 @@ document.addEventListener("DOMContentLoaded", () => {
     // YOUR CODE HERE:
     //
     // 1. Get all the choice elements. You can use the `document.querySelectorAll()` method.
-    let buttonNode = document.querySelectorAll("#choices");
-    console.log(buttonNode);
-
+    let choicesNodeList = document.querySelectorAll("#choices input");
+    console.log(choicesNodeList)
     // 2. Loop through all the choice elements and check which one is selected
     // Hint: Radio input elements have a property `.checked` (e.g., `element.checked`).
     //  When a radio input gets selected the `.checked` property will be set to true.
     //  You can use check which choice was selected by checking if the `.checked` property is true.
-    for (let i = 0; i < choices.length; i++) {
-      if (choices.value === "4") {
-        return true;
+    for (let i = 0; i < choicesNodeList.length; i++) {
+      if ( choicesNodeList[i].checked === true ) {
+        console.log(choicesNodeList[i])
       }
     }
 
@@ -167,22 +166,9 @@ document.addEventListener("DOMContentLoaded", () => {
     // Check if selected answer is correct by calling the quiz method `checkAnswer()` with the selected answer.
     // Move to the next question by calling the quiz method `moveToNextQuestion()`.
     // Show the next question by calling the function `showQuestion()`.
+
   }
 
-  let testNode = document.querySelector("#");
-
-  testNode.addEventListener("click", () => {
-    if (testNode.classList.contains("yellow")) {
-      testNode.classList.add("blue");
-      testNode.classList.remove("yellow");
-    } else if (testNode.classList.contains("blue")) {
-      testNode.classList.add("red");
-      testNode.classList.remove("blue");
-    } else if (testNode.classList.contains("red")) {
-      testNode.classList.add("yellow");
-      testNode.classList.remove("red");
-    }
-  });
 
   function showResults() {
     // YOUR CODE HERE:
