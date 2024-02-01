@@ -25,6 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // Array with the quiz questions
   const questions = [
     new Question("What is 2 + 2?", ["3", "4", "5", "6"], "4", 1),
+    new Question("How old is Jorge?", ["72", "Not penny's boat", "Hoy no lo sabrán :(", "ESDLA Oscar's Nominations"], "Hoy no lo sabrán :(", 3),
     new Question(
       "What is the capital of France?",
       ["Miami", "Paris", "Oslo", "Rome"],
@@ -41,6 +42,24 @@ document.addEventListener("DOMContentLoaded", () => {
       "What is the mass–energy equivalence equation?",
       ["E = mc^2", "E = m*c^2", "E = m*c^3", "E = m*c"],
       "E = mc^2",
+      3
+    ),
+    new Question(
+      "Quienes participaron en la batalla de Isengard?",
+      ["Las fuerzas de Saruman contra los Rohirrim", "Las fuerzas de Saruman contra los Ents", "Los Orcos de Dol Guldur contra los galadhrim de Lothlórien", "La fuerzas de Sauron contra las de Gondorn"],
+      "Las fuerzas de Saruman contra los Ents",
+      2
+    ),
+    new Question(
+      "Quien es el Principe Mestizo en Harry Potter?",
+      ["Draco Malfoy", "Harry Poter", "Severus Snape", "Tom Riddle"],
+      "Severus Snape",
+      3
+    ),
+    new Question(
+      "Cómo se llama el martillo de Thor?",
+      ["Vanir", "Mjolnir", "Aesir", "Norn"],
+      "Mjolnir",
       3
     ),
     // Add more questions here
@@ -70,8 +89,16 @@ document.addEventListener("DOMContentLoaded", () => {
   showQuestion();
 
   /************  TIMER  ************/
-
-  let timer;
+  let timeRemaining = quizDuration;
+  let timer = setInterval(() => {
+    timeRemaining -= 1;
+    timeRemainingContainer.innerText = `${minutes}:${seconds}`;
+    if (timeRemaining <=0) {
+    clearInterval(timer);
+    showResults()
+  }
+ },1000)
+ 
 
   /************  EVENT LISTENERS  ************/
 
@@ -122,9 +149,9 @@ document.addEventListener("DOMContentLoaded", () => {
     // Update the green progress bar (div#progressBar) width so that it shows the percentage of questions answered
 
     progressBar.style.width = `${quiz.currentQuestionIndex / quiz.questions.length * 100}%`; // This value is hardcoded as a placeholder
-   console.log(quiz.questions.length,quiz.currentQuestionIndex)
-  //  quiz.currentQuestionIndex / quiz.questions *100 
-   console.log(progressBar.style.width)
+   //console.log(quiz.questions.length,quiz.currentQuestionIndex)
+  
+   //console.log(progressBar.style.width)
 
     
     // 3. Update the question count text
@@ -204,6 +231,6 @@ document.addEventListener("DOMContentLoaded", () => {
     endView.style.display = "flex";
 
     // 3. Update the result container (div#result) inner text to show the number of correct answers out of total questions
-    resultContainer.innerText = `You scored 1 out of 1 correct answers!`; // This value is hardcoded as a placeholder
+    resultContainer.innerText = `You scored ${quiz.correctAnswers} out of ${quiz.questions.length} correct answers!`; // This value is hardcoded as a placeholder
   }
 });
