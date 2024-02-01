@@ -103,11 +103,20 @@ document.addEventListener("DOMContentLoaded", () => {
     //
     // 1. Show the question
     // Update the inner text of the question container element and show the question text
-    let questionElem = document.querySelector("#question");
+    questionContainer.innerText = question.text;
+
+    question.choices.forEach((choice, index) =>{
+      const choiceLabel = document.createElement('label')
+      choiceLabel.innerText = choice;
+      choiceLabel.addEventListener('click', () => handleChoiceSelection(index));
+      choiceContainer.appendChild(choiceLabel)
+    })
+    
+    /*let questionElem = document.querySelector("#question");
     const newQuestion = document.createElement(`h3`);
     newQuestion.innerHTML = `
     <h3>${questions["new Question"]}</h3>`;
-    questionElem.append(newQuestion);
+    questionElem.append(newQuestion);*/
 
     // 2. Update the green progress bar
     // Update the green progress bar (div#progressBar) width so that it shows the percentage of questions answered
@@ -124,17 +133,19 @@ document.addEventListener("DOMContentLoaded", () => {
     // For each choice create a new radio input with a label, and append it to the choice container.
     // Each choice should be displayed as a radio input element with a label:
 
+
+
     let choicesElem = document.querySelector("#choices");
     const secondQuestion = document.createElement(`div`);
     secondQuestion.innerHTML = `
           <input type="radio" name="choice" value="4">
-          <label>4</label>
+          <label></label>
           <input type="radio" name="choice" value="1">
-          <label>1</label>
+          <label></label>
           <input type="radio" name="choice" value="3">
-          <label>3</label>
+          <label></label>
           <input type="radio" name="choice" value="2">
-          <label>2</label>
+          <label></label>
         <br>`;
     choicesElem.append(secondQuestion);
 
@@ -144,7 +155,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Hint 4: You can use the `element.innerText` property to set the inner text of an element.
   }
 
-  function nextButtonHandler() {
+  function nextLchoiceLabelHandler() {
     let selectedAnswer; // A variable to store the selected answer value
 
     // YOUR CODE HERE:
