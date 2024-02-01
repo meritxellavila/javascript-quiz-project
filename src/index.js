@@ -107,7 +107,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     question.choices.forEach((choice, index) =>{
       const choiceLabel = document.createElement('label')
-      choiceLabel.innerText = choice;
+      //choiceLabel.innerText = choice;
       choiceLabel.addEventListener('click', () => handleChoiceSelection(index));
       choiceContainer.appendChild(choiceLabel)
     })
@@ -126,7 +126,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // 3. Update the question count text
     // Update the question count (div#questionCount) show the current question out of total questions
 
-    questionCount.innerText = `Question 1 of 5`; //  This value is hardcoded as a placeholder
+    questionCount.innerText = `Question 1 of 4`; //  This value is hardcoded as a placeholder
 
     // 4. Create and display new radio input element with a label for each choice.
     // Loop through the current question `choices`.
@@ -138,14 +138,14 @@ document.addEventListener("DOMContentLoaded", () => {
     let choicesElem = document.querySelector("#choices");
     const secondQuestion = document.createElement(`div`);
     secondQuestion.innerHTML = `
-          <input type="radio" name="choice" value="4">
-          <label></label>
-          <input type="radio" name="choice" value="1">
-          <label></label>
-          <input type="radio" name="choice" value="3">
-          <label></label>
-          <input type="radio" name="choice" value="2">
-          <label></label>
+          <input type="radio" name="choice" value="${question.choices[0]}">
+          <label>${question.choices[0]}</label>
+          <input type="radio" name="choice" value="${question.choices[1]}">
+          <label>${question.choices[1]}</label>
+          <input type="radio" name="choice" value="${question.choices[2]}">
+          <label>${question.choices[2]}</label>
+          <input type="radio" name="choice" value="${question.choices[3]}">
+          <label>${question.choices[3]}</label>
         <br>`;
     choicesElem.append(secondQuestion);
 
@@ -155,9 +155,9 @@ document.addEventListener("DOMContentLoaded", () => {
     // Hint 4: You can use the `element.innerText` property to set the inner text of an element.
   }
 
-  function nextLchoiceLabelHandler() {
+  function nextButtonHandler() {
     let selectedAnswer; // A variable to store the selected answer value
-
+    
     // YOUR CODE HERE:
     //
     // 1. Get all the choice elements. You can use the `document.querySelectorAll()` method.
@@ -169,15 +169,25 @@ document.addEventListener("DOMContentLoaded", () => {
     //  You can use check which choice was selected by checking if the `.checked` property is true.
     for (let i = 0; i < choicesNodeList.length; i++) {
       if ( choicesNodeList[i].checked === true ) {
-        console.log(choicesNodeList[i])
+        //console.log(choicesNodeList[i])
+        selectedAnswer = choicesNodeList[i]
       }
     }
-
+    console.log(selectedAnswer)
+    console.log(quiz)
     // 3. If an answer is selected (`selectedAnswer`), check if it is correct and move to the next question
     // Check if selected answer is correct by calling the quiz method `checkAnswer()` with the selected answer.
     // Move to the next question by calling the quiz method `moveToNextQuestion()`.
     // Show the next question by calling the function `showQuestion()`.
 
+    if (selectedAnswer === ) {
+      const isCorrect = quiz.checkAnswer()
+      quiz.moveToNextQuestion()
+      showQuestion()
+    }
+    //quiz.checkAnswer()
+    //showQuestion()
+    //quiz.moveToNextQuestion()
   }
 
 

@@ -29,7 +29,7 @@ class Quiz {
      checkAnswer(answer) {
         this.correctAnswers ++ //Darle una vuelta y checkear
      }
-
+     
      hasEnded() {
         if (this.currentQuestionIndex < this.questions.length) {
             return false;
