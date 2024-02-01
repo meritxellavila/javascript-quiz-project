@@ -121,12 +121,17 @@ document.addEventListener("DOMContentLoaded", () => {
     // 2. Update the green progress bar
     // Update the green progress bar (div#progressBar) width so that it shows the percentage of questions answered
 
-    progressBar.style.width = `0%`; // This value is hardcoded as a placeholder
+    progressBar.style.width = `${quiz.currentQuestionIndex / quiz.questions.length * 100}%`; // This value is hardcoded as a placeholder
+   console.log(quiz.questions.length,quiz.currentQuestionIndex)
+  //  quiz.currentQuestionIndex / quiz.questions *100 
+   console.log(progressBar.style.width)
 
+    
     // 3. Update the question count text
     // Update the question count (div#questionCount) show the current question out of total questions
 
-    questionCount.innerText = `Question 1 of 4`; //  This value is hardcoded as a placeholder
+    questionCount.innerText = `Question ${quiz.currentQuestionIndex +1} of ${quiz.questions.length}`; //  This value is hardcoded as a placeholder
+
 
     // 4. Create and display new radio input element with a label for each choice.
     // Loop through the current question `choices`.
@@ -162,7 +167,7 @@ document.addEventListener("DOMContentLoaded", () => {
     //
     // 1. Get all the choice elements. You can use the `document.querySelectorAll()` method.
     let choicesNodeList = document.querySelectorAll("#choices input");
-    console.log(choicesNodeList)
+    // console.log(choicesNodeList)
     // 2. Loop through all the choice elements and check which one is selected
     // Hint: Radio input elements have a property `.checked` (e.g., `element.checked`).
     //  When a radio input gets selected the `.checked` property will be set to true.
@@ -173,21 +178,19 @@ document.addEventListener("DOMContentLoaded", () => {
         selectedAnswer = choicesNodeList[i]
       }
     }
-    console.log(selectedAnswer)
-    console.log(quiz)
+    let valueAnswer = selectedAnswer.value 
+    // console.log(selectedAnswer)
+    // console.log(quiz)
+    // console.log(valueAnswer)
     // 3. If an answer is selected (`selectedAnswer`), check if it is correct and move to the next question
     // Check if selected answer is correct by calling the quiz method `checkAnswer()` with the selected answer.
     // Move to the next question by calling the quiz method `moveToNextQuestion()`.
     // Show the next question by calling the function `showQuestion()`.
 
-    if (selectedAnswer === ) {
-      const isCorrect = quiz.checkAnswer()
+
+      quiz.checkAnswer(valueAnswer)
       quiz.moveToNextQuestion()
-      showQuestion()
-    }
-    //quiz.checkAnswer()
-    //showQuestion()
-    //quiz.moveToNextQuestion()
+      showQuestion()  
   }
 
 
